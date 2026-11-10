@@ -192,3 +192,52 @@ footer {
 @media (max-width: 600px) {
   .step-num { left: 8px; }
 }
+
+/* ---------- 上方選單 ---------- */
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 10px 16px;
+  background: var(--dirt-dark);
+  border-bottom: 4px solid var(--grass-dark);
+}
+
+.topnav .brand {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.topnav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topnav ul a {
+  display: block;
+  padding: 8px 14px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border: 3px solid transparent;
+}
+
+.topnav ul a:hover { background: rgba(255, 255, 255, 0.15); }
+
+.topnav ul a[aria-current="page"] {
+  background: var(--grass);
+  border-color: var(--grass-dark);
+}
+
+.tip.warn {
+  background: #ffe3e0;
+  border-left-color: #e0442f;
+}
