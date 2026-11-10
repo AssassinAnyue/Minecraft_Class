@@ -95,6 +95,21 @@ main {
 
 .btn-orange:active { box-shadow: 0 0 0 #a84c14; }
 
+.btn-small {
+  padding: 12px 22px;
+  font-size: 1.1rem;
+}
+
+.btn-guide {
+  background: #3a7bd5;
+  border-color: #23559c;
+  box-shadow: 0 6px 0 #23559c;
+}
+
+.btn-guide:hover { background: #4f8fe6; }
+
+.btn-guide:active { box-shadow: 0 0 0 #23559c; }
+
 .btn-download:focus-visible {
   outline: 4px solid #ffd23f;
   outline-offset: 4px;
@@ -125,4 +140,55 @@ footer {
   color: #fff;
   padding: 16px;
   background: var(--dirt-dark);
+}
+
+/* ---------- 教程頁 ---------- */
+.back-link {
+  max-width: 820px;
+  margin: 0 auto 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.back-link a { color: #1f3b57; }
+
+.guide-step {
+  max-width: 820px;
+  position: relative;
+}
+
+.step-num {
+  position: absolute;
+  top: -20px;
+  left: -16px;
+  width: 52px;
+  height: 52px;
+  line-height: 44px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  background: #e8732c;
+  border: 4px solid #a84c14;
+}
+
+.guide-step img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 16px auto 0;
+  border: 3px solid #333;
+}
+
+.tip {
+  background: #fff6d6;
+  border-left: 6px solid #ffc83d;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.guide-step.done { background: #eaf7e1; }
+
+@media (max-width: 600px) {
+  .step-num { left: 8px; }
 }
