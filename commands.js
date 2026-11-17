@@ -139,50 +139,8 @@ const LISTS = {
     ['分裂箭矢（弩，最高 1）', 'multishot'],
     ['快速上弦（弩，最高 3）', 'quick_charge'],
   ],
-  structures: [
-    ['村莊（任何種類）', '#village'],
-    ['沙漠神殿', 'desert_pyramid'],
-    ['叢林神殿', 'jungle_pyramid'],
-    ['雪屋', 'igloo'],
-    ['女巫小屋', 'swamp_hut'],
-    ['掠奪者前哨站', 'pillager_outpost'],
-    ['林地府邸', 'mansion'],
-    ['海底神殿', 'monument'],
-    ['要塞（找終界傳送門）', 'stronghold'],
-    ['廢棄礦坑', 'mineshaft'],
-    ['沉船', 'shipwreck'],
-    ['埋藏的寶藏', 'buried_treasure'],
-    ['廢棄傳送門', 'ruined_portal'],
-    ['古蹟廢墟', 'trail_ruins'],
-    ['試煉密室', 'trial_chambers'],
-    ['遠古城市', 'ancient_city'],
-    ['地獄要塞（地獄）', 'fortress'],
-    ['堡壘遺跡（地獄）', 'bastion_remnant'],
-    ['終界城（終界）', 'end_city'],
-  ],
-  biomes: [
-    ['平原', 'plains'],
-    ['向日葵平原', 'sunflower_plains'],
-    ['繁花森林', 'flower_forest'],
-    ['櫻花樹林', 'cherry_grove'],
-    ['黑森林', 'dark_forest'],
-    ['蒼白花園', 'pale_garden'],
-    ['沙漠', 'desert'],
-    ['叢林', 'jungle'],
-    ['竹林', 'bamboo_jungle'],
-    ['蘑菇島', 'mushroom_fields'],
-    ['冰刺', 'ice_spikes'],
-    ['雪原', 'snowy_plains'],
-    ['惡地', 'badlands'],
-    ['沼澤', 'swamp'],
-    ['紅樹林沼澤', 'mangrove_swamp'],
-    ['草甸', 'meadow'],
-    ['海洋', 'ocean'],
-    ['溫暖海洋', 'warm_ocean'],
-    ['蒼鬱洞窟', 'lush_caves'],
-    ['鐘乳石洞窟', 'dripstone_caves'],
-    ['深暗之域', 'deep_dark'],
-  ],
+  structures: MC_STRUCTURES, // assets/mc-worldgen.js
+  biomes: MC_BIOMES, // assets/mc-worldgen.js
 };
 
 // ===== 指令表 =====
@@ -265,11 +223,19 @@ const SECTIONS = [
 // ===== 一般下拉選單、數字、座標 =====
 function makeSelect(name) {
   const sel = document.createElement('select');
+  let parent = sel;
   for (const [zh, id] of LISTS[name]) {
+    if (id === null) {
+      // 分類標題
+      parent = document.createElement('optgroup');
+      parent.label = zh;
+      sel.appendChild(parent);
+      continue;
+    }
     const opt = document.createElement('option');
     opt.value = id;
     opt.textContent = id ? `${zh} ${id}` : zh;
-    sel.appendChild(opt);
+    parent.appendChild(opt);
   }
   return sel;
 }
