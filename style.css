@@ -241,3 +241,107 @@ footer {
   background: #ffe3e0;
   border-left-color: #e0442f;
 }
+
+/* ---------- 指令表 ---------- */
+.cmd-howto, .cmd-card {
+  max-width: 980px;
+  text-align: left;
+}
+
+.cmd-howto .steps { display: block; margin-top: 0; }
+
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 1px 6px;
+  font-family: inherit;
+  font-weight: bold;
+  text-align: center;
+  background: #eee;
+  border: 2px solid #999;
+  border-bottom-width: 4px;
+  border-radius: 4px;
+}
+
+.cmd-table { display: flex; flex-direction: column; }
+
+.cmd-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 2fr;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 2px dashed #ddd;
+}
+
+.cmd-use {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.cmd-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cmd-code {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 4px;
+  padding: 8px 10px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 1rem;
+  color: #f5f5f5;
+  background: #2b2b2b;
+  border: 3px solid #111;
+  border-radius: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.cmd-code select,
+.cmd-code input {
+  margin: 0 2px;
+  padding: 3px 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #2b2b2b;
+  background: #ffe9a8;
+  border: 2px solid #ffc83d;
+  max-width: 100%;
+}
+
+.btn-copy {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  background: var(--grass);
+  border: 3px solid var(--grass-dark);
+  box-shadow: 0 4px 0 var(--grass-dark);
+}
+
+.btn-copy:hover { background: #6fc043; }
+
+.btn-copy:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--grass-dark);
+}
+
+.btn-copy.copied {
+  background: #3a7bd5;
+  border-color: #23559c;
+  box-shadow: 0 4px 0 #23559c;
+}
+
+@media (max-width: 700px) {
+  .cmd-row { grid-template-columns: 1fr; }
+}
