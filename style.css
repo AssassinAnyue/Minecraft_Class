@@ -263,16 +263,30 @@ kbd {
   border-radius: 4px;
 }
 
-.cmd-table { display: flex; flex-direction: column; }
-
-.cmd-row {
-  display: grid;
-  grid-template-columns: minmax(160px, 1fr) 2fr;
-  gap: 8px 16px;
-  align-items: center;
-  padding: 12px 0;
-  border-top: 2px dashed #ddd;
+.cmd-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
+
+.cmd-table th {
+  padding: 8px 10px;
+  font-size: 1rem;
+  text-align: left;
+  color: #fff;
+  background: var(--dirt);
+  border: 2px solid var(--dirt-dark);
+}
+
+.cmd-table th:first-child { width: 30%; }
+
+.cmd-table td {
+  padding: 10px;
+  vertical-align: middle;
+  border: 2px solid #ddd;
+}
+
+.cmd-table tbody tr:nth-child(even) td { background: #f7f7f2; }
 
 .cmd-use {
   font-size: 1.1rem;
@@ -292,7 +306,7 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: 4px;
+  row-gap: 6px;
   padding: 8px 10px;
   font-family: Consolas, "Courier New", monospace;
   font-size: 1rem;
@@ -316,6 +330,26 @@ kbd {
   max-width: 100%;
 }
 
+.cmd-code input.coord {
+  width: 5.5ch;
+  text-align: center;
+  background: #fff;
+  border-color: #9ad06f;
+}
+
+.cmd-code input.coord::placeholder { color: #8a8a8a; }
+
+.cmd-code input.need {
+  background: #ffd6d0;
+  border-color: #e0442f;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
 .btn-copy {
   flex-shrink: 0;
   padding: 10px 14px;
@@ -327,6 +361,7 @@ kbd {
   background: var(--grass);
   border: 3px solid var(--grass-dark);
   box-shadow: 0 4px 0 var(--grass-dark);
+  white-space: nowrap;
 }
 
 .btn-copy:hover { background: #6fc043; }
@@ -342,6 +377,134 @@ kbd {
   box-shadow: 0 4px 0 #23559c;
 }
 
+.btn-copy.warn {
+  background: #e0442f;
+  border-color: #9c2516;
+  box-shadow: 0 4px 0 #9c2516;
+}
+
+/* ---------- 方塊／物品圖示選擇器 ---------- */
+.mc-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url("assets/mc-icons.png");
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+.mc-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 2px;
+  padding: 2px 8px 2px 4px;
+  font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  background: #7d9b45;
+  border: 2px solid #5d7a2c;
+  border-radius: 18px;
+}
+
+.mc-picker:hover { background: #8cab50; }
+
+.pick-kind { padding-left: 6px; }
+
+.pick-name {
+  max-width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+}
+
+.mc-popup {
+  position: absolute;
+  z-index: 50;
+  padding: 10px;
+  background: #c6c6c6;
+  border: 4px solid #fff;
+  outline: 3px solid #555;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+.mc-popup[hidden] { display: none; }
+
+.mc-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: #555;
+  border: 2px solid #333;
+}
+
+.mc-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.mc-search input::placeholder { color: #ccc; }
+
+.mc-search span { padding: 0 10px; }
+
+.mc-grid {
+  max-height: 340px;
+  overflow-y: auto;
+  background: #8b8b8b;
+  border: 2px solid #373737;
+}
+
+.mc-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+}
+
+.mc-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0;
+  cursor: pointer;
+  background: #8b8b8b;
+  border: 2px solid;
+  border-color: #373737 #fff #fff #373737;
+}
+
+.mc-cell[hidden] { display: none; }
+
+.mc-cell:hover,
+.mc-cell:focus-visible {
+  background: #c5c5c5;
+  outline: none;
+}
+
+.mc-cell.selected { background: #dcdcdc; }
+
+.mc-empty {
+  margin: 8px 0 0;
+  text-align: center;
+  font-weight: bold;
+}
+
 @media (max-width: 700px) {
-  .cmd-row { grid-template-columns: 1fr; }
+  .cmd-table thead { display: none; }
+  .cmd-table, .cmd-table tbody, .cmd-table tr, .cmd-table td { display: block; width: 100%; }
+  .cmd-table tr { border-top: 3px solid var(--dirt); }
+  .cmd-table td { border: 0; }
+  .cmd-table td.cmd-use { padding-bottom: 0; }
+  .cmd-right { flex-direction: column; align-items: stretch; }
 }
