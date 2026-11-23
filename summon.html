@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft 召喚產生器</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="summon.css">
+</head>
+<body>
+  <nav class="topnav">
+    <a class="brand" href="index.html">⛏️ Minecraft 小學堂</a>
+    <ul>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="curseforge-guide.html">CurseForge 安裝教程</a></li>
+      <li><a href="shaders-guide.html">光影下載</a></li>
+      <li><a href="commands.html">指令表</a></li>
+      <li><a href="summon.html" aria-current="page">召喚產生器</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>🧪 召喚產生器</h1>
+    <p class="subtitle">選好你想要的生物和效果，按一下就能複製 /summon 指令！</p>
+  </header>
+
+  <main>
+    <section class="card gen-card">
+      <div class="gen-top">
+        <h2>/summon 召喚指令</h2>
+        <span class="gen-version">Java 26.3</span>
+      </div>
+      <div class="gen-row">
+        <span class="gen-label">召喚位置</span>
+        <div class="gen-field">
+          <div class="xyz" id="pos"></div>
+          <p class="hint">空白或 <code>~</code> 代表「我現在的位置」；<code>~5</code> 代表往那個方向 5 格。</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="layers"></div>
+
+    <p class="gen-add"><button type="button" class="btn-add" id="add-mount">＋ 新增坐騎</button></p>
+
+    <section class="card gen-card gen-output">
+      <h2>你的指令</h2>
+      <textarea id="output" rows="4" readonly spellcheck="false" aria-label="產生的指令"></textarea>
+      <p class="gen-length" id="length"></p>
+      <div class="gen-buttons">
+        <button type="button" class="btn-copy" id="copy">📋 複製</button>
+        <span class="gen-spacer"></span>
+        <button type="button" class="btn-plain" id="save">💾 儲存</button>
+        <button type="button" class="btn-plain" id="reset">🔄 全部重來</button>
+      </div>
+      <div id="errors" class="tip warn" hidden></div>
+      <div id="too-long" class="tip warn" hidden>
+        <strong>⚠️ 這個指令太長，聊天框放不下！</strong>聊天框最多 256 個字，要改用<strong>指令方塊</strong>：
+        <ol>
+          <li>切換到創造模式，在聊天框貼上這個指令，拿到指令方塊：
+            <code>/give @s command_block</code>
+            <button type="button" class="btn-plain" id="copy-cb">📋 複製</button></li>
+          <li>把指令方塊放在地上，對它按右鍵</li>
+          <li>把上面的召喚指令貼進去，按「完成」</li>
+          <li>在指令方塊旁邊放一個按鈕，按下去就會召喚！</li>
+        </ol>
+      </div>
+      <div id="saved"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Minecraft 課程教材 · 有問題就舉手問老師 🙋</p>
+  </footer>
+
+  <script src="assets/mc-data.js"></script>
+  <script src="assets/mc-summon.js"></script>
+  <script src="picker.js"></script>
+  <script src="summon.js"></script>
+</body>
+</html>
